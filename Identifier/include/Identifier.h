@@ -25,10 +25,10 @@ class Identifier {
 public:
     Identifier( std::shared_ptr<spdlog::logger> & );
 
-    bool set_imsi( const std::string &, const int & );
+    [[nodiscard]] bool set_imsi( const std::string &, const int & );
 
-    std::string get_ascii_imsi() const;
-    std::string get_bcd_imsi() const;
+    [[nodiscard]] std::string get_ascii_imsi() const;
+    [[nodiscard]] std::string get_bcd_imsi() const;
 
 private:
     std::shared_ptr<spdlog::logger> m_logger;
@@ -44,9 +44,9 @@ private:
     void encode_in_bcd();
     void decode_in_ascii();
 
-    bool imsi_is_valid( const std::string &, const int & );
-    bool is_digit( const char & );
-    uint8_t char_to_int( const char & ) const;
-    char int_to_char( const uint8_t & ) const;
-    std::string int_to_hex( const uint8_t & ) const;
+    [[nodiscard]] bool imsi_is_valid( const std::string &, const int & );
+    [[nodiscard]] bool is_digit( const char & );
+    [[nodiscard]] uint8_t char_to_int( const char & ) const;
+    [[nodiscard]] char int_to_char( const uint8_t & ) const;
+    [[nodiscard]] std::string int_to_hex( const uint8_t & ) const;
 };

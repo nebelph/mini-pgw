@@ -8,10 +8,10 @@
 
 class IConfig {
 public:
-    virtual bool parse( const std::string & ) = 0;
+    [[nodiscard]] virtual bool parse( const std::string & ) = 0;
 
-    std::string get_log_file() const;
-    spdlog::level::level_enum get_log_level() const;
+    [[nodiscard]] std::string get_log_file() const;
+    [[nodiscard]] spdlog::level::level_enum get_log_level() const;
 
 protected:
     nlohmann::json_abi_v3_12_0::json m_data;

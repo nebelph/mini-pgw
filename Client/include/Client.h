@@ -22,6 +22,4 @@ private:
     const std::shared_ptr<Config> m_cfg;
 
     int m_socket;
-
-    int set_nonblocking( int );
 };

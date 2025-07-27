@@ -13,10 +13,10 @@ public:
                                                                                                               m_cdr_logger( cdr_logger ) { }
 
     virtual void add_session( const std::string & ) = 0;
-    virtual bool remove_session( const std::string & ) = 0;
-    virtual bool is_session_active( const std::string & ) = 0;
+    [[nodiscard]] virtual bool remove_session( const std::string & ) = 0;
+    [[nodiscard]] virtual bool is_session_active( const std::string & ) = 0;
     virtual void cleanup_expired_sessions( const uint8_t & ) = 0;
-    virtual bool graceful_shutdown( const uint8_t & ) = 0;
+    [[nodiscard]] virtual bool graceful_shutdown( const uint8_t & ) = 0;
 
 protected:
     std::shared_ptr<spdlog::logger> m_pgw_logger;

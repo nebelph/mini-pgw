@@ -30,8 +30,9 @@ void HttpServer::post_request()
     m_server.Post( "/stop", [this]( const httplib::Request &, httplib::Response &res ) {
         m_pgw_logger->info( "Received POST-request=/stop" );
         std::thread( [this]() {
-            m_service->graceful_shutdown();
-            m_server.stop();
+            if ( m_service->graceful_shutdown() ) {
+                m_server.stop();
+            }
         } ).detach();
     } );
 }

@@ -44,11 +44,3 @@ void Client::run( const std::string &imsi )
         throw std::runtime_error( "recvfrom()" );
     }
 }
-
-int Client::set_nonblocking( int fd )
-{
-    int flags = fcntl( fd, F_GETFL, 0 );
-    if ( flags == -1 )
-        return -1;
-    return fcntl( fd, F_SETFL, flags | O_NONBLOCK );
-}

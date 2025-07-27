@@ -9,16 +9,16 @@
 
 class Config : public IConfig {
 public:
-    bool parse( const std::string & ) override;
+    [[nodiscard]] bool parse( const std::string & ) override;
 
-    std::string get_udp_ip() const;
-    uint16_t get_udp_port() const;
-    uint8_t get_session_timeout_sec() const;
-    std::string get_cdr_file() const;
-    std::string get_http_ip() const;
-    uint16_t get_http_port() const;
-    uint8_t get_graceful_shutdown_rate() const;
-    std::shared_ptr<std::unordered_set<std::string>> get_blacklist() const;
+    [[nodiscard]] std::string get_udp_ip() const;
+    [[nodiscard]] uint16_t get_udp_port() const;
+    [[nodiscard]] uint8_t get_session_timeout_sec() const;
+    [[nodiscard]] std::string get_cdr_file() const;
+    [[nodiscard]] std::string get_http_ip() const;
+    [[nodiscard]] uint16_t get_http_port() const;
+    [[nodiscard]] uint8_t get_graceful_shutdown_rate() const;
+    [[nodiscard]] std::shared_ptr<std::unordered_set<std::string>> get_blacklist() const;
 
 private:
     std::string m_udp_ip;

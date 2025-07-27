@@ -57,7 +57,9 @@ void UdpServer::run()
         }
 
         Identifier imsi( m_pgw_logger );
-        imsi.set_imsi( buffer, F_BCD );
+        if ( !imsi.set_imsi( buffer, F_BCD ) ) {
+            continue;
+        }
 
         std::string response = m_service->add_imsi( imsi.get_ascii_imsi() ) ? "created" : "rejected";
 

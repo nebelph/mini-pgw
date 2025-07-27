@@ -29,5 +29,5 @@ private:
 
     int m_socket;
 
-    int set_nonblocking( int );
+    [[nodiscard]] int set_nonblocking( int );
 };
