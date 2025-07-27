@@ -1,8 +1,8 @@
 #include "UdpServer.h"
 
-UdpServer::UdpServer( std::shared_ptr<spdlog::logger> &pgw_logger, std::shared_ptr<Config> &cfg, std::shared_ptr<Service> &serv ) : m_pgw_logger( pgw_logger ),
-                                                                                                                                    m_cfg( cfg ),
-                                                                                                                                    m_service( serv )
+UdpServer::UdpServer( logger_ptr &pgw_logger, std::shared_ptr<Config> &cfg, std::shared_ptr<Service> &serv ) : m_pgw_logger( pgw_logger ),
+                                                                                                               m_cfg( cfg ),
+                                                                                                               m_service( serv )
 {
 }
 
@@ -40,7 +40,7 @@ void UdpServer::run()
     }
 
     while ( m_service->is_running() ) {
-        char buffer[64];
+        char buffer[BUFFER_SIZE];
         int bytes_received;
         sockaddr_in client_addr;
         socklen_t client_addr_len = sizeof( client_addr );
@@ -57,7 +57,7 @@ void UdpServer::run()
         }
 
         Identifier imsi( m_pgw_logger );
-        if ( !imsi.set_imsi( buffer, F_BCD ) ) {
+        if ( ! imsi.set_imsi( buffer, F_BCD ) ) {
             continue;
         }
 

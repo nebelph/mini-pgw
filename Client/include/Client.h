@@ -9,16 +9,20 @@
 #include <spdlog/spdlog.h>
 
 #include "Config.h"
+#include "LoggerTypes.h"
+
+const size_t BUFFER_SIZE = 64;
+
 
 class Client {
 public:
-    Client( std::shared_ptr<spdlog::logger> &, const std::shared_ptr<Config> & );
+    Client( logger_ptr &, const std::shared_ptr<Config> & );
     ~Client();
 
     void run( const std::string & );
 
 private:
-    std::shared_ptr<spdlog::logger> m_logger;
+    logger_ptr m_logger;
     const std::shared_ptr<Config> m_cfg;
 
     int m_socket;

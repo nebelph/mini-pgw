@@ -1,11 +1,12 @@
 #pragma once
 
 #include "HttpServer.h"
+#include "LoggerTypes.h"
 #include "UdpServer.h"
 
 class ServerLauncher {
 public:
-    ServerLauncher( std::shared_ptr<UdpServer> &, std::shared_ptr<HttpServer> &);
+    ServerLauncher( std::shared_ptr<UdpServer> &, std::shared_ptr<HttpServer> & );
 
     void launch();
 

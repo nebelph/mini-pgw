@@ -1,6 +1,6 @@
 #include "Identifier.h"
 
-Identifier::Identifier( std::shared_ptr<spdlog::logger> &file_logger ) : m_logger( file_logger )
+Identifier::Identifier( logger_ptr &file_logger ) : m_logger( file_logger )
 {
 }
 
@@ -79,7 +79,7 @@ void Identifier::decode_in_ascii()
     m_logger->debug( "IMSI={} (ASCII) decoded!", m_ascii_imsi_str );
 }
 
-bool Identifier::imsi_is_valid( const std::string &imsi, const int &flag )
+bool Identifier::imsi_is_valid( const std::string &imsi, const int &flag ) const
 {
     size_t imsi_size = imsi.size();
 
@@ -122,22 +122,22 @@ bool Identifier::imsi_is_valid( const std::string &imsi, const int &flag )
 
 bool Identifier::is_digit( const char &ch )
 {
-    return ch >= 48 && ch <= 57 ? true : false;
+    return ch >= CHAR_ZERO && ch <= CHAR_NINE;
 }
 
-uint8_t Identifier::char_to_int( const char &ch ) const
+uint8_t Identifier::char_to_int( const char &ch )
 {
-    return ch - 48;
+    return static_cast<uint8_t>( ch - CHAR_ZERO );
 }
 
-char Identifier::int_to_char( const uint8_t &i ) const
+char Identifier::int_to_char( const uint8_t &i )
 {
-    return i + 48;
+    return static_cast<char>( i + CHAR_ZERO );
 }
 
-std::string Identifier::int_to_hex( const uint8_t &number ) const
+std::string Identifier::int_to_hex( const uint8_t &number )
 {
     std::stringstream ss;
-    ss << std::hex << (uint)number;
-    return number > 15 ? ss.str() : "0" + ss.str();
+    ss << std::hex << static_cast<unsigned>( number );
+    return number > 15 ? ss.str() : static_cast<const char>( CHAR_ZERO ) + ss.str();
 }

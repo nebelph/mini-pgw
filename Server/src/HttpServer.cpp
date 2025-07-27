@@ -1,6 +1,6 @@
 #include "HttpServer.h"
 
-HttpServer::HttpServer( std::shared_ptr<spdlog::logger> &pgw_logger, const std::shared_ptr<Config> &cfg, std::shared_ptr<Service> &serv ) : m_pgw_logger( pgw_logger ),
+HttpServer::HttpServer( logger_ptr &pgw_logger, const std::shared_ptr<Config> &cfg, std::shared_ptr<Service> &serv ) : m_pgw_logger( pgw_logger ),
                                                                                                                                             m_cfg( cfg ),
                                                                                                                                             m_service( serv )
 {

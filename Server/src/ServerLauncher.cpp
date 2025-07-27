@@ -1,10 +1,9 @@
 #include "ServerLauncher.h"
 
 ServerLauncher::ServerLauncher( std::shared_ptr<UdpServer> &udp_serv, std::shared_ptr<HttpServer> &http_serv ) : m_udp_server( udp_serv ),
-                                                                                                                  m_http_server( http_serv )
+                                                                                                                 m_http_server( http_serv )
 {
 }
-
 
 void ServerLauncher::launch()
 {

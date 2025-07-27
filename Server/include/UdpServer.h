@@ -12,22 +12,25 @@
 #include "HttpServer.h"
 #include "IConfig.h"
 #include "Identifier.h"
+#include "LoggerTypes.h"
 #include "Service.h"
+
+const size_t BUFFER_SIZE = 64;
 
 class UdpServer {
 public:
-    UdpServer( std::shared_ptr<spdlog::logger> &, std::shared_ptr<Config> &, std::shared_ptr<Service> & );
+    UdpServer( logger_ptr &, std::shared_ptr<Config> &, std::shared_ptr<Service> & );
     ~UdpServer();
 
     void run();
     void cleanup_expired_sessions();
 
 private:
-    std::shared_ptr<spdlog::logger> m_pgw_logger;
+    logger_ptr m_pgw_logger;
     std::shared_ptr<Config> m_cfg;
     std::shared_ptr<Service> m_service;
 
     int m_socket;
 
-    [[nodiscard]] int set_nonblocking( int );
+    [[nodiscard]] static int set_nonblocking( int );
 };

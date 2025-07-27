@@ -32,7 +32,7 @@ void Client::run( const std::string &imsi )
         throw std::runtime_error( "sendto()" );
     }
 
-    char buffer[64];
+    char buffer[BUFFER_SIZE];
     int bytes_received;
     socklen_t server_addr_len = sizeof( server_addr );
     bytes_received = recvfrom( m_socket, buffer, sizeof( buffer ) - 1, 0, (sockaddr *)&server_addr, &server_addr_len );

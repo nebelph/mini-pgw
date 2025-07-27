@@ -14,6 +14,7 @@ add_executable(server_prog
 target_include_directories(server_prog PRIVATE
     include
     ${cpp-httplib_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}/Identifier/include
     ${CMAKE_SOURCE_DIR}/IConfig/include
 )

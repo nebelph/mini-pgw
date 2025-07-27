@@ -8,6 +8,8 @@
 #include <string>
 #include <vector>
 
+#include "LoggerTypes.h"
+
 /*
 contains:
     - IMSI (ASCII);
@@ -21,9 +23,12 @@ size of MSIN =  1-10
 #define F_ASCII 0
 #define F_BCD 1
 
+const uint8_t CHAR_ZERO = 48;
+const uint8_t CHAR_NINE = 57;
+
 class Identifier {
 public:
-    Identifier( std::shared_ptr<spdlog::logger> & );
+    Identifier( logger_ptr & );
 
     [[nodiscard]] bool set_imsi( const std::string &, const int & );
 
@@ -31,7 +36,7 @@ public:
     [[nodiscard]] std::string get_bcd_imsi() const;
 
 private:
-    std::shared_ptr<spdlog::logger> m_logger;
+    logger_ptr m_logger;
 
     const size_t ASCII_IMSI_MIN_SIZE = 6;
     const size_t ASCII_IMSI_MAX_SIZE = 15;
@@ -44,9 +49,9 @@ private:
     void encode_in_bcd();
     void decode_in_ascii();
 
-    [[nodiscard]] bool imsi_is_valid( const std::string &, const int & );
-    [[nodiscard]] bool is_digit( const char & );
-    [[nodiscard]] uint8_t char_to_int( const char & ) const;
-    [[nodiscard]] char int_to_char( const uint8_t & ) const;
-    [[nodiscard]] std::string int_to_hex( const uint8_t & ) const;
+    [[nodiscard]] bool imsi_is_valid( const std::string &, const int & ) const;
+    [[nodiscard]] static bool is_digit( const char & );
+    [[nodiscard]] static uint8_t char_to_int( const char & );
+    [[nodiscard]] static char int_to_char( const uint8_t & );
+    [[nodiscard]] static std::string int_to_hex( const uint8_t & );
 };

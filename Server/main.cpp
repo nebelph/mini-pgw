@@ -12,11 +12,13 @@
 
 const std::string JSON_FILE = "cfg.json";
 
+using logger_ptr = std::shared_ptr<spdlog::logger>;
+
 int main()
 {
     try {
-        std::shared_ptr<spdlog::logger> pgw_logger;                // pgw logger
-        std::shared_ptr<spdlog::logger> cdr_logger;                // cdr logger
+        logger_ptr pgw_logger;                // pgw logger
+        logger_ptr cdr_logger;                // cdr logger
         std::shared_ptr<Config> cfg = std::make_shared<Config>();  // config parser
         if ( !cfg->parse( JSON_FILE ) ) {
             throw std::runtime_error( "Invalid config!" );

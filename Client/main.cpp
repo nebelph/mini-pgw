@@ -5,6 +5,7 @@
 #include "Client.h"
 #include "Config.h"
 #include "Identifier.h"
+#include "LoggerTypes.h"
 
 const std::string JSON_FILE = "cfg.json";
 
@@ -16,7 +17,7 @@ int main( int argc, char **argv )
     }
 
     try {
-        std::shared_ptr<spdlog::logger> client_logger;
+        logger_ptr client_logger;
 
         std::shared_ptr<Config> cfg = std::make_shared<Config>();
         cfg->parse( JSON_FILE );

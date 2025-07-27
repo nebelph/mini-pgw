@@ -6,6 +6,7 @@ add_executable(client_prog
 
 target_include_directories(client_prog PRIVATE
     include
+    ${CMAKE_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}/Identifier/include
     ${CMAKE_SOURCE_DIR}/IConfig/include
 )

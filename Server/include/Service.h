@@ -6,11 +6,12 @@
 
 #include "Config.h"
 #include "IRepository.h"
+#include "LoggerTypes.h"
 #include "Repository.h"
 
 class Service {
 public:
-    Service( std::shared_ptr<spdlog::logger> &, const std::shared_ptr<Config> &, std::shared_ptr<spdlog::logger> &, std::shared_ptr<Repository> & );
+    Service( logger_ptr &, const std::shared_ptr<Config> &, logger_ptr &, std::shared_ptr<Repository> & );
 
     [[nodiscard]] bool add_imsi( const std::string & );
     [[nodiscard]] bool is_imsi_active( const std::string & );
@@ -20,8 +21,8 @@ public:
     [[nodiscard]] bool is_running() const;
 
 private:
-    std::shared_ptr<spdlog::logger> m_pgw_logger;
-    std::shared_ptr<spdlog::logger> m_cdr_logger;
+    logger_ptr m_pgw_logger;
+    logger_ptr m_cdr_logger;
     std::shared_ptr<IRepository> m_repo;
     const std::shared_ptr<Config> m_cfg;
 

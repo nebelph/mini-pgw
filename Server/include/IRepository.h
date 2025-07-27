@@ -7,10 +7,12 @@
 #include <thread>
 #include <unordered_map>
 
+#include "LoggerTypes.h"
+
 class IRepository {
 public:
-    IRepository( std::shared_ptr<spdlog::logger> &pgw_logger, std::shared_ptr<spdlog::logger> &cdr_logger ) : m_pgw_logger( pgw_logger ),
-                                                                                                              m_cdr_logger( cdr_logger ) { }
+    IRepository( logger_ptr &pgw_logger, logger_ptr &cdr_logger ) : m_pgw_logger( pgw_logger ),
+                                                                    m_cdr_logger( cdr_logger ) { }
 
     virtual void add_session( const std::string & ) = 0;
     [[nodiscard]] virtual bool remove_session( const std::string & ) = 0;
@@ -19,8 +21,6 @@ public:
     [[nodiscard]] virtual bool graceful_shutdown( const uint8_t & ) = 0;
 
 protected:
-    std::shared_ptr<spdlog::logger> m_pgw_logger;
-    std::shared_ptr<spdlog::logger> m_cdr_logger;
-    std::unordered_map<std::string, std::chrono::steady_clock::time_point> m_sessions;
-    std::shared_mutex m_mutex;
+    logger_ptr m_pgw_logger;
+    logger_ptr m_cdr_logger;
 };
