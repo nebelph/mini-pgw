@@ -1,26 +1,14 @@
 #include "UdpServer.h"
 
-UdpServer::UdpServer( std::shared_ptr<spdlog::logger> &pgw_logger, std::shared_ptr<Config> &cfg, std::shared_ptr<Service> &serv, std::shared_ptr<HttpServer> &http_server ) : m_pgw_logger( pgw_logger ),
-                                                                                                                                                                              m_cfg( cfg ),
-                                                                                                                                                                              m_service( serv ),
-                                                                                                                                                                              m_http_server( http_server )
+UdpServer::UdpServer( std::shared_ptr<spdlog::logger> &pgw_logger, std::shared_ptr<Config> &cfg, std::shared_ptr<Service> &serv ) : m_pgw_logger( pgw_logger ),
+                                                                                                                                    m_cfg( cfg ),
+                                                                                                                                    m_service( serv )
 {
 }
 
 UdpServer::~UdpServer()
 {
     close( m_socket );
-}
-
-void UdpServer::start()
-{
-    std::thread udp_thread( &UdpServer::run, this );
-    std::thread http_thread( &HttpServer::run, m_http_server.get() );
-    std::thread session_cleaner_thread( &UdpServer::cleanup_expired_sessions, this );
-
-    udp_thread.join();
-    http_thread.join();
-    session_cleaner_thread.join();
 }
 
 void UdpServer::run()
@@ -50,8 +38,6 @@ void UdpServer::run()
         m_pgw_logger->critical( "Can not bind UDP socket!" );
         throw std::runtime_error( "bind()" );
     }
-
-    
 
     while ( m_service->is_running() ) {
         char buffer[64];

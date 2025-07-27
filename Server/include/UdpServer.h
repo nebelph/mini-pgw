@@ -9,27 +9,25 @@
 #include <thread>
 
 #include "Config.h"
+#include "HttpServer.h"
 #include "IConfig.h"
 #include "Identifier.h"
 #include "Service.h"
-#include "HttpServer.h"
 
 class UdpServer {
 public:
-    UdpServer( std::shared_ptr<spdlog::logger> &, std::shared_ptr<Config> &, std::shared_ptr<Service> &, std::shared_ptr<HttpServer> & );
+    UdpServer( std::shared_ptr<spdlog::logger> &, std::shared_ptr<Config> &, std::shared_ptr<Service> & );
     ~UdpServer();
 
-    void start();
+    void run();
+    void cleanup_expired_sessions();
 
 private:
     std::shared_ptr<spdlog::logger> m_pgw_logger;
     std::shared_ptr<Config> m_cfg;
     std::shared_ptr<Service> m_service;
-    std::shared_ptr<HttpServer> m_http_server;
 
     int m_socket;
 
-    void run();
-    void cleanup_expired_sessions();
     int set_nonblocking( int );
 };

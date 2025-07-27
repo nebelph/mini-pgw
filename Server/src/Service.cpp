@@ -1,15 +1,15 @@
 #include "Service.h"
 
-Service::Service( std::shared_ptr<spdlog::logger> &pgw_logger, const std::shared_ptr<Config> &cfg, std::shared_ptr<spdlog::logger> &cdr_logger ) : m_pgw_logger( pgw_logger ),
-                                                                                                                                                   m_cfg( cfg ),
-                                                                                                                                                   m_repo( std::make_shared<Repository>( pgw_logger, cdr_logger ) ),
-                                                                                                                                                   m_is_running( true )
+Service::Service( std::shared_ptr<spdlog::logger> &pgw_logger, const std::shared_ptr<Config> &cfg, std::shared_ptr<spdlog::logger> &cdr_logger, std::shared_ptr<Repository> &repo ) : m_pgw_logger( pgw_logger ),
+                                                                                                                                                                                      m_cfg( cfg ),
+                                                                                                                                                                                      m_repo( repo ),
+                                                                                                                                                                                      m_is_running( true )
 {
 }
 
 bool Service::add_imsi( const std::string &imsi )
 {
-    if ( m_cfg->get_blacklist().contains( imsi ) ) {
+    if ( m_cfg->get_blacklist()->contains( imsi ) ) {
         m_pgw_logger->info( "Blacklist contains IMSI={}!", imsi );
         return false;
     }

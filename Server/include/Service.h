@@ -10,7 +10,7 @@
 
 class Service {
 public:
-    Service( std::shared_ptr<spdlog::logger> &, const std::shared_ptr<Config> &, std::shared_ptr<spdlog::logger> & );
+    Service( std::shared_ptr<spdlog::logger> &, const std::shared_ptr<Config> &, std::shared_ptr<spdlog::logger> &, std::shared_ptr<Repository> & );
 
     bool add_imsi( const std::string & );
     bool is_imsi_active( const std::string & );

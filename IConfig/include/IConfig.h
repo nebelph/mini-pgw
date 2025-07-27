@@ -8,7 +8,7 @@
 
 class IConfig {
 public:
-    virtual void parse( const std::string & ) = 0;
+    virtual bool parse( const std::string & ) = 0;
 
     std::string get_log_file() const;
     spdlog::level::level_enum get_log_level() const;

@@ -8,7 +8,7 @@
 
 class Config : public IConfig {
 public:
-    void parse( const std::string & ) override;
+    bool parse( const std::string & ) override;
 
     std::string get_server_ip() const;
     uint16_t get_server_port() const;

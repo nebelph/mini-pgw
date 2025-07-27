@@ -20,6 +20,8 @@ private:
     std::shared_ptr<Service> m_service;
     httplib::Server m_server;
 
+    // http://127.0.0.1:8080/check_subscriber?imsi=6753562
+    // curl -X POST http://127.0.0.1:8080/stop -d "noop=1"
     void get_request();
     void post_request();
 };
