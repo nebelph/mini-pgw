@@ -17,6 +17,7 @@ target_include_directories(server_prog PRIVATE
     ${CMAKE_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}/Identifier/include
     ${CMAKE_SOURCE_DIR}/IConfig/include
+    ${CMAKE_SOURCE_DIR}/IRepository/include
 )
 
 target_link_libraries(server_prog PRIVATE
@@ -24,6 +25,7 @@ target_link_libraries(server_prog PRIVATE
     nlohmann_json::nlohmann_json
     IdentifierLib
     InterfaceConfig
+    InterfaceRepository
 )
 
 add_custom_command(TARGET server_prog POST_BUILD

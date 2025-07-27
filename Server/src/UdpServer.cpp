@@ -18,7 +18,7 @@ void UdpServer::run()
         m_pgw_logger->debug( "UDP socket={} created.", m_socket );
     } else {
         m_pgw_logger->critical( "Can not create UDP socket!" );
-        throw std::runtime_error( "socket()" );
+        throw std::runtime_error( "Can not create UDP socket!" );
     }
 
     if ( set_nonblocking( m_socket ) != -1 ) {
@@ -36,7 +36,7 @@ void UdpServer::run()
         m_pgw_logger->info( "UDP server started on ip={}, port={}", m_cfg->get_udp_ip(), m_cfg->get_udp_port() );
     } else {
         m_pgw_logger->critical( "Can not bind UDP socket!" );
-        throw std::runtime_error( "bind()" );
+        throw std::runtime_error( "Can not bind UDP socket!" );
     }
 
     while ( m_service->is_running() ) {
@@ -67,7 +67,7 @@ void UdpServer::run()
             m_pgw_logger->info( "Response sent: {}.", response );
         } else {
             m_pgw_logger->critical( "Can not send response!" );
-            throw std::runtime_error( "sendto()" );
+            throw std::runtime_error( "Can not send response!" );
         }
     }
 }

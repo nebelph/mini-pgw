@@ -11,16 +11,11 @@
 
 class IRepository {
 public:
-    IRepository( logger_ptr &pgw_logger, logger_ptr &cdr_logger ) : m_pgw_logger( pgw_logger ),
-                                                                    m_cdr_logger( cdr_logger ) { }
+    virtual ~IRepository() = default;
 
     virtual void add_session( const std::string & ) = 0;
     [[nodiscard]] virtual bool remove_session( const std::string & ) = 0;
     [[nodiscard]] virtual bool is_session_active( const std::string & ) = 0;
     virtual void cleanup_expired_sessions( const uint8_t & ) = 0;
     [[nodiscard]] virtual bool graceful_shutdown( const uint8_t & ) = 0;
-
-protected:
-    logger_ptr m_pgw_logger;
-    logger_ptr m_cdr_logger;
 };

@@ -1,8 +1,8 @@
 #include "HttpServer.h"
 
 HttpServer::HttpServer( logger_ptr &pgw_logger, const std::shared_ptr<Config> &cfg, std::shared_ptr<Service> &serv ) : m_pgw_logger( pgw_logger ),
-                                                                                                                                            m_cfg( cfg ),
-                                                                                                                                            m_service( serv )
+                                                                                                                       m_cfg( cfg ),
+                                                                                                                       m_service( serv )
 {
 }
 

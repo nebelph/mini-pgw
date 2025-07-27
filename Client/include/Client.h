@@ -13,7 +13,6 @@
 
 const size_t BUFFER_SIZE = 64;
 
-
 class Client {
 public:
     Client( logger_ptr &, const std::shared_ptr<Config> & );

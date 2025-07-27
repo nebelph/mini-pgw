@@ -5,19 +5,23 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-add_executable(IdentifierTests
+add_executable(Tests
     identifier_tests.cpp
+    repository_tests.cpp
 )
 
-target_include_directories(IdentifierTests PRIVATE
+target_include_directories(Tests PRIVATE
     ${CMAKE_SOURCE_DIR}/Identifier/include
+    ${CMAKE_SOURCE_DIR}/IRepository/include
 )
 
-target_link_libraries(IdentifierTests PRIVATE
+target_link_libraries(Tests PRIVATE
     IdentifierLib
+    InterfaceRepository
     GTest::gtest_main
     spdlog::spdlog
+    gmock_main
 )
 
 include(GoogleTest)
-gtest_discover_tests(IdentifierTests)
+gtest_discover_tests(Tests)

@@ -1,7 +1,7 @@
 #include "Client.h"
 
 Client::Client( std::shared_ptr<spdlog::logger> &file_logger, const std::shared_ptr<Config> &cfg ) : m_logger( file_logger ),
-                                                                                                      m_cfg( cfg )
+                                                                                                     m_cfg( cfg )
 {
 }
 
@@ -17,7 +17,7 @@ void Client::run( const std::string &imsi )
         m_logger->debug( "UDP socket={} created.", m_socket );
     } else {
         m_logger->critical( "Can not create UDP socket!" );
-        throw std::runtime_error( "socket()" );
+        throw std::runtime_error( "Can not create UDP socket!" );
     }
 
     sockaddr_in server_addr;
@@ -28,8 +28,8 @@ void Client::run( const std::string &imsi )
     if ( sendto( m_socket, imsi.c_str(), imsi.size(), 0, (sockaddr *)&server_addr, sizeof( server_addr ) ) != -1 ) {
         m_logger->info( "IMSI sent: {}.", imsi );
     } else {
-            m_logger->critical( "Can not send IMSI!" );
-        throw std::runtime_error( "sendto()" );
+        m_logger->critical( "Can not send IMSI!" );
+        throw std::runtime_error( "Can not send IMSI!" );
     }
 
     char buffer[BUFFER_SIZE];
@@ -41,6 +41,6 @@ void Client::run( const std::string &imsi )
         m_logger->info( "Response received: {}.", buffer );
     } else {
         m_logger->critical( "Can not receive response!" );
-        throw std::runtime_error( "recvfrom()" );
+        throw std::runtime_error( "Can not receive response!" );
     }
 }

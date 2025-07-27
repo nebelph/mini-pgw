@@ -2,7 +2,7 @@
 
 bool Config::parse( const std::string &filename )
 {
-    if ( !IConfig::parse( filename ) ) {
+    if ( ! IConfig::parse( filename ) ) {
         return false;
     }
 

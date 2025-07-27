@@ -34,15 +34,15 @@ std::string Identifier::get_bcd_imsi() const
 
 void Identifier::encode_in_bcd()
 {
-    std::vector<uint8_t> imsi_v;/* = {
-        0x01u,  // type == 1
-        0x08u,  // length == 3-8 (number of octets)
-        0x00u,  // spare == 0, instance == 0
-        0x00u,  // octet 1
-        0x00u,  // octet 2
-        ...
-        0xF0u   // octet n
-    }*/
+    std::vector<uint8_t> imsi_v; /* = {
+         0x01u,  // type == 1
+         0x08u,  // length == 3-8 (number of octets)
+         0x00u,  // spare == 0, instance == 0
+         0x00u,  // octet 1
+         0x00u,  // octet 2
+         ...
+         0xF0u   // octet n
+     }*/
     size_t ascii_imsi_size = m_ascii_imsi_str.size();
     imsi_v.push_back( 0x01 );
     imsi_v.push_back( ascii_imsi_size % 2 == 0 ? ascii_imsi_size / 2 : ascii_imsi_size / 2 + 1 );

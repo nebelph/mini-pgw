@@ -17,10 +17,10 @@ using logger_ptr = std::shared_ptr<spdlog::logger>;
 int main()
 {
     try {
-        logger_ptr pgw_logger;                // pgw logger
-        logger_ptr cdr_logger;                // cdr logger
+        logger_ptr pgw_logger;                                     // pgw logger
+        logger_ptr cdr_logger;                                     // cdr logger
         std::shared_ptr<Config> cfg = std::make_shared<Config>();  // config parser
-        if ( !cfg->parse( JSON_FILE ) ) {
+        if ( ! cfg->parse( JSON_FILE ) ) {
             throw std::runtime_error( "Invalid config!" );
         }
 

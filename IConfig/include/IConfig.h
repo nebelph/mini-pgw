@@ -8,6 +8,8 @@
 
 class IConfig {
 public:
+    virtual ~IConfig() = default;
+
     [[nodiscard]] virtual bool parse( const std::string & ) = 0;
 
     [[nodiscard]] std::string get_log_file() const;
